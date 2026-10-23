@@ -1,10 +1,10 @@
-import 'history_screen.dart';
-import 'insights_screen.dart';
-import 'goals_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'add_edit_activity_screen.dart';
 import 'dashboard_screen.dart';
+import 'goals_screen.dart';
+import 'history_screen.dart';
+import 'insights_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -61,15 +61,4 @@ class _HomeShellState extends State<HomeShell> {
       ),
     );
   }
-}
-
-class _ComingSoon extends StatelessWidget {
-  const _ComingSoon(this.title);
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(child: Center(child: Text('$title: coming soon')));
-  }
-}
+}
