@@ -1,8 +1,11 @@
 import 'package:fittrack/core/constants.dart';
 import 'package:fittrack/models/activity_entry.dart';
 import 'package:fittrack/models/day_summary.dart';
+import 'package:fittrack/providers/theme_provider.dart';
 import 'package:fittrack/utils/date_utils.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   final day = DateTime(2026, 10, 23);
@@ -55,5 +58,18 @@ void main() {
   test('startOfWeek returns Monday', () {
     // 23 Oct 2026 is a Friday.
     expect(startOfWeek(day), DateTime(2026, 10, 19));
+  });
+
+  test('ThemeProvider defaults to system and updates theme mode', () async {
+    SharedPreferences.setMockInitialValues({});
+    final provider = ThemeProvider();
+    await provider.init();
+    expect(provider.themeMode, ThemeMode.system);
+
+    await provider.setThemeMode(ThemeMode.dark);
+    expect(provider.themeMode, ThemeMode.dark);
+
+    await provider.setThemeMode(ThemeMode.light);
+    expect(provider.themeMode, ThemeMode.light);
   });
 }

@@ -3,12 +3,21 @@ import 'package:provider/provider.dart';
 
 import 'core/theme.dart';
 import 'providers/activity_provider.dart';
+import 'providers/theme_provider.dart';
 import 'screens/home_shell.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const FitTrackApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()..init()),
+        ChangeNotifierProvider(create: (_) => ActivityProvider()..init()),
+      ],
+      child: const FitTrackApp(),
+    ),
+  );
 }
 
 class FitTrackApp extends StatelessWidget {
@@ -16,16 +25,14 @@ class FitTrackApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ActivityProvider()..init(),
-      child: MaterialApp(
-        title: 'FitTrack',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.light(),
-        darkTheme: AppTheme.dark(),
-        themeMode: ThemeMode.system,
-        home: const _AppRoot(),
-      ),
+    final themeProvider = context.watch<ThemeProvider>();
+    return MaterialApp(
+      title: 'FitTrack',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: themeProvider.themeMode,
+      home: const _AppRoot(),
     );
   }
 }

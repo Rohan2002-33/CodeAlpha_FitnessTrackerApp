@@ -8,6 +8,7 @@ import '../core/theme.dart';
 import '../models/day_summary.dart';
 import '../models/goals.dart';
 import '../providers/activity_provider.dart';
+import '../providers/theme_provider.dart';
 import '../utils/formatters.dart';
 import '../widgets/activity_tile.dart';
 import '../widgets/app_card.dart';
@@ -191,7 +192,7 @@ class _Header extends StatelessWidget {
             ],
           ),
         ),
-        if (streak > 0)
+        if (streak > 0) ...[
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
@@ -217,6 +218,27 @@ class _Header extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 8),
+        ],
+        IconButton(
+          tooltip: 'Toggle light/dark theme',
+          onPressed: () => context.read<ThemeProvider>().toggle(context),
+          style: IconButton.styleFrom(
+            backgroundColor: scheme.surfaceContainerHighest.withValues(
+              alpha: 0.5,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          icon: Icon(
+            Theme.of(context).brightness == Brightness.dark
+                ? Icons.light_mode_rounded
+                : Icons.dark_mode_rounded,
+            color: scheme.onSurface,
+            size: 20,
+          ),
+        ),
       ],
     );
   }

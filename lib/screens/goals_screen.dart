@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../models/goals.dart';
 import '../providers/activity_provider.dart';
+import '../providers/theme_provider.dart';
 import '../utils/formatters.dart';
 import '../widgets/app_card.dart';
 
@@ -84,6 +85,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
   @override
   Widget build(BuildContext context) {
     final saved = context.watch<ActivityProvider>().goals;
+    final themeProvider = context.watch<ThemeProvider>();
     final scheme = Theme.of(context).colorScheme;
     final changed = _changed(saved);
 
@@ -143,6 +145,59 @@ class _GoalsScreenState extends State<GoalsScreen> {
           ),
           const SizedBox(height: 8),
           TextButton(onPressed: _reset, child: const Text('Reset to defaults')),
+          const SizedBox(height: 24),
+          const Text(
+            'Appearance',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 12),
+          AppCard(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.palette_outlined, color: scheme.primary),
+                    const SizedBox(width: 12),
+                    const Text(
+                      'Theme mode',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                SizedBox(
+                  width: double.infinity,
+                  child: SegmentedButton<ThemeMode>(
+                    segments: const [
+                      ButtonSegment(
+                        value: ThemeMode.system,
+                        icon: Icon(Icons.brightness_auto_rounded),
+                        label: Text('System'),
+                      ),
+                      ButtonSegment(
+                        value: ThemeMode.light,
+                        icon: Icon(Icons.light_mode_rounded),
+                        label: Text('Light'),
+                      ),
+                      ButtonSegment(
+                        value: ThemeMode.dark,
+                        icon: Icon(Icons.dark_mode_rounded),
+                        label: Text('Dark'),
+                      ),
+                    ],
+                    selected: {themeProvider.themeMode},
+                    onSelectionChanged: (set) =>
+                        themeProvider.setThemeMode(set.first),
+                  ),
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 24),
           const Text(
             'Data',
