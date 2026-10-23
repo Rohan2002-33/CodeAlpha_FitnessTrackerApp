@@ -1,3 +1,4 @@
+import 'history_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'add_edit_activity_screen.dart';
@@ -20,7 +21,7 @@ class _HomeShellState extends State<HomeShell> {
         index: _index,
         children: [
           DashboardScreen(onSeeAll: () => setState(() => _index = 1)),
-          const _ComingSoon('History'),
+          const HistoryScreen(),
           const _ComingSoon('Insights'),
           const _ComingSoon('Goals'),
         ],
