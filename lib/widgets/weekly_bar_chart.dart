@@ -39,24 +39,32 @@ class WeeklyBarChart extends StatelessWidget {
           gridData: const FlGridData(show: false),
           borderData: FlBorderData(show: false),
           titlesData: FlTitlesData(
-            leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            leftTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+            topTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+            rightTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
                 reservedSize: 28,
                 getTitlesWidget: (value, meta) {
                   final i = value.toInt();
-                  if (i < 0 || i >= labels.length) return const SizedBox.shrink();
+                  if (i < 0 || i >= labels.length)
+                    return const SizedBox.shrink();
                   return Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
                       labels[i],
                       style: TextStyle(
                         fontSize: 11,
-                        fontWeight:
-                            i == highlightIndex ? FontWeight.w800 : FontWeight.w500,
+                        fontWeight: i == highlightIndex
+                            ? FontWeight.w800
+                            : FontWeight.w500,
                         color: i == highlightIndex
                             ? scheme.onSurface
                             : scheme.onSurfaceVariant,
@@ -82,10 +90,14 @@ class WeeklyBarChart extends StatelessWidget {
           barTouchData: BarTouchData(
             enabled: true,
             touchTooltipData: BarTouchTooltipData(
-              getTooltipItem: (group, groupIndex, rod, rodIndex) => BarTooltipItem(
-                formatNumber(rod.toY.round()),
-                const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-              ),
+              getTooltipItem: (group, groupIndex, rod, rodIndex) =>
+                  BarTooltipItem(
+                    formatNumber(rod.toY.round()),
+                    const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
             ),
           ),
           barGroups: [
@@ -99,11 +111,15 @@ class WeeklyBarChart extends StatelessWidget {
                     color: highlightIndex == null || i == highlightIndex
                         ? color
                         : color.withValues(alpha: 0.4),
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(8),
+                    ),
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
                       toY: maxY,
-                      color: scheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                      color: scheme.surfaceContainerHighest.withValues(
+                        alpha: 0.5,
+                      ),
                     ),
                   ),
                 ],

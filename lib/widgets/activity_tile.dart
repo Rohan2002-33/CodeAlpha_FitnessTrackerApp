@@ -58,14 +58,19 @@ class ActivityTile extends StatelessWidget {
                   details,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: scheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),
           ),
           const SizedBox(width: 8),
           Text(
-            showDate ? friendlyDate(entry.date) : DateFormat.jm().format(entry.date),
+            showDate
+                ? friendlyDate(entry.date)
+                : DateFormat.jm().format(entry.date),
             style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
           ),
         ],

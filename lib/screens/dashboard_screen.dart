@@ -90,7 +90,10 @@ class DashboardScreen extends StatelessWidget {
                         children: [
                           const Text(
                             'Daily steps',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                           const SizedBox(height: 2),
                           Text(
@@ -180,7 +183,10 @@ class _Header extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 greeting(now),
-                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w800),
+                style: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ],
           ),
@@ -224,8 +230,9 @@ class _TodayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double stepsProgress =
-        goals.steps == 0 ? 0.0 : summary.steps / goals.steps;
+    final double stepsProgress = goals.steps == 0
+        ? 0.0
+        : summary.steps / goals.steps;
     final remaining = math.max(0, goals.steps - summary.steps);
     final percent = (stepsProgress * 100).clamp(0, 100).round();
 
@@ -287,7 +294,10 @@ class _TodayCard extends StatelessWidget {
                       remaining == 0
                           ? 'Goal reached. Great work!'
                           : '${formatNumber(remaining)} to go · goal ${formatNumber(goals.steps)}',
-                      style: const TextStyle(color: Colors.white70, fontSize: 13),
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 13,
+                      ),
                     ),
                   ],
                 ),

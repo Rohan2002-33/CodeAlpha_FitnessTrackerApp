@@ -16,7 +16,10 @@ class DaySummary {
   final int minutes;
   final int workouts;
 
-  factory DaySummary.fromEntries(DateTime date, Iterable<ActivityEntry> entries) {
+  factory DaySummary.fromEntries(
+    DateTime date,
+    Iterable<ActivityEntry> entries,
+  ) {
     var steps = 0;
     var calories = 0;
     var minutes = 0;

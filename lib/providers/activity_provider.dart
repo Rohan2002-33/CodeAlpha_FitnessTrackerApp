@@ -10,8 +10,8 @@ import '../utils/date_utils.dart';
 
 class ActivityProvider extends ChangeNotifier {
   ActivityProvider({DatabaseService? db, GoalService? goalService})
-      : _db = db ?? DatabaseService.instance,
-        _goalService = goalService ?? GoalService();
+    : _db = db ?? DatabaseService.instance,
+      _goalService = goalService ?? GoalService();
 
   final DatabaseService _db;
   final GoalService _goalService;

@@ -35,12 +35,11 @@ class _GoalsScreenState extends State<GoalsScreen> {
 
   Future<void> _save() async {
     await context.read<ActivityProvider>().updateGoals(
-          Goals(steps: _steps, calories: _calories, activeMinutes: _minutes),
-        );
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Goals saved')),
+      Goals(steps: _steps, calories: _calories, activeMinutes: _minutes),
     );
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Goals saved')));
   }
 
   void _reset() {
@@ -78,9 +77,8 @@ class _GoalsScreenState extends State<GoalsScreen> {
     if (ok != true || !mounted) return;
     await context.read<ActivityProvider>().clearAll();
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('All data deleted')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('All data deleted')));
   }
 
   @override
@@ -238,7 +236,10 @@ class _GoalSlider extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                  ),
                 ),
               ),
               Text(
@@ -263,7 +264,8 @@ class _GoalSlider extends StatelessWidget {
               min: min.toDouble(),
               max: max.toDouble(),
               divisions: (max - min) ~/ step,
-              onChanged: (v) => onChanged(min + ((v - min) / step).round() * step),
+              onChanged: (v) =>
+                  onChanged(min + ((v - min) / step).round() * step),
             ),
           ),
         ],

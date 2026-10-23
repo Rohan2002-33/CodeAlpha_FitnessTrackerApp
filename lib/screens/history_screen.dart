@@ -53,8 +53,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
     final scheme = Theme.of(context).colorScheme;
 
     final all = provider.entries;
-    final items =
-        _filter == null ? all : all.where((e) => e.type == _filter).toList();
+    final items = _filter == null
+        ? all
+        : all.where((e) => e.type == _filter).toList();
 
     final groups = <DateTime, List<ActivityEntry>>{};
     for (final e in items) {
@@ -90,7 +91,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
           if (items.isEmpty)
             EmptyState(
               icon: Icons.history_rounded,
-              title: _filter == null ? 'Nothing logged yet' : 'No ${_filter!.label} activities',
+              title: _filter == null
+                  ? 'Nothing logged yet'
+                  : 'No ${_filter!.label} activities',
               message: _filter == null
                   ? 'Your logged workouts will show up here.'
                   : 'Try another filter or log a new activity.',
@@ -103,12 +106,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   children: [
                     Text(
                       friendlyDate(group.key),
-                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const Spacer(),
                     Text(
                       '${formatNumber(group.value.fold<int>(0, (s, e) => s + e.calories))} kcal',
-                      style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: scheme.onSurfaceVariant,
+                      ),
                     ),
                   ],
                 ),

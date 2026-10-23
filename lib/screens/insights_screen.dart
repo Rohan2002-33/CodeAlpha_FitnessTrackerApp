@@ -31,13 +31,16 @@ class _InsightsScreenState extends State<InsightsScreen> {
     final isCurrent = _weekOffset == 0;
 
     final fmt = DateFormat('d MMM');
-    final rangeLabel = '${fmt.format(week.first.date)} – ${fmt.format(week.last.date)}';
+    final rangeLabel =
+        '${fmt.format(week.first.date)} – ${fmt.format(week.last.date)}';
 
     final totalSteps = week.fold<int>(0, (s, d) => s + d.steps);
     final totalCalories = week.fold<int>(0, (s, d) => s + d.calories);
     final totalMinutes = week.fold<int>(0, (s, d) => s + d.minutes);
     final totalWorkouts = week.fold<int>(0, (s, d) => s + d.workouts);
-    final stepGoalDays = week.where((d) => d.steps >= goals.steps && d.steps > 0).length;
+    final stepGoalDays = week
+        .where((d) => d.steps >= goals.steps && d.steps > 0)
+        .length;
     final best = week.reduce((a, b) => b.steps > a.steps ? b : a);
 
     final mix = provider.minutesByType(anchor).entries.toList()
@@ -67,19 +70,27 @@ class _InsightsScreenState extends State<InsightsScreen> {
                     children: [
                       Text(
                         isCurrent ? 'This week' : rangeLabel,
-                        style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                        ),
                       ),
                       if (isCurrent)
                         Text(
                           rangeLabel,
-                          style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: scheme.onSurfaceVariant,
+                          ),
                         ),
                     ],
                   ),
                 ),
                 IconButton(
                   tooltip: 'Next week',
-                  onPressed: isCurrent ? null : () => setState(() => _weekOffset++),
+                  onPressed: isCurrent
+                      ? null
+                      : () => setState(() => _weekOffset++),
                   icon: const Icon(Icons.chevron_right_rounded),
                 ),
               ],
@@ -218,12 +229,16 @@ class _InsightsScreenState extends State<InsightsScreen> {
                               const SizedBox(width: 8),
                               Text(
                                 m.key.label,
-                                style: const TextStyle(fontWeight: FontWeight.w600),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               const Spacer(),
                               Text(
                                 '${m.value} min',
-                                style: TextStyle(color: scheme.onSurfaceVariant),
+                                style: TextStyle(
+                                  color: scheme.onSurfaceVariant,
+                                ),
                               ),
                             ],
                           ),
@@ -234,7 +249,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                               value: m.value / mixTotal,
                               minHeight: 8,
                               color: m.key.color,
-                              backgroundColor: m.key.color.withValues(alpha: 0.15),
+                              backgroundColor: m.key.color.withValues(
+                                alpha: 0.15,
+                              ),
                             ),
                           ),
                         ],

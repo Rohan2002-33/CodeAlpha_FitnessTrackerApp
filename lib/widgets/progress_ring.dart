@@ -22,7 +22,8 @@ class ProgressRing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final track = trackColor ?? Theme.of(context).colorScheme.surfaceContainerHighest;
+    final track =
+        trackColor ?? Theme.of(context).colorScheme.surfaceContainerHighest;
 
     return SizedBox(
       width: size,

@@ -43,7 +43,9 @@ class _AddEditActivityScreenState extends State<AddEditActivityScreen> {
     final e = widget.entry;
     _type = e?.type ?? ActivityType.walking;
     _date = e?.date ?? DateTime.now();
-    _duration = TextEditingController(text: e == null ? '' : '${e.durationMin}');
+    _duration = TextEditingController(
+      text: e == null ? '' : '${e.durationMin}',
+    );
     _calories = TextEditingController(text: e == null ? '' : '${e.calories}');
     _steps = TextEditingController(
       text: (e == null || e.steps == 0) ? '' : '${e.steps}',
@@ -85,7 +87,13 @@ class _AddEditActivityScreenState extends State<AddEditActivityScreen> {
     );
     if (picked != null) {
       setState(() {
-        _date = DateTime(picked.year, picked.month, picked.day, _date.hour, _date.minute);
+        _date = DateTime(
+          picked.year,
+          picked.month,
+          picked.day,
+          _date.hour,
+          _date.minute,
+        );
       });
     }
   }
@@ -117,13 +125,17 @@ class _AddEditActivityScreenState extends State<AddEditActivityScreen> {
       }
       navigator.pop();
       messenger.showSnackBar(
-        SnackBar(content: Text(_isEdit ? 'Activity updated' : 'Activity logged')),
+        SnackBar(
+          content: Text(_isEdit ? 'Activity updated' : 'Activity logged'),
+        ),
       );
     } catch (_) {
       if (!mounted) return;
       setState(() => _saving = false);
       messenger.showSnackBar(
-        const SnackBar(content: Text('Something went wrong. Please try again.')),
+        const SnackBar(
+          content: Text('Something went wrong. Please try again.'),
+        ),
       );
     }
   }
@@ -160,12 +172,12 @@ class _AddEditActivityScreenState extends State<AddEditActivityScreen> {
   }
 
   Widget _label(String text) => Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-        ),
-      );
+    padding: const EdgeInsets.only(bottom: 10),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

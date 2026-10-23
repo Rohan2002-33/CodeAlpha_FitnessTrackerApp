@@ -40,14 +40,14 @@ class ActivityEntry {
   }
 
   Map<String, Object?> toMap() => {
-        'id': id,
-        'type': type.name,
-        'duration_min': durationMin,
-        'calories': calories,
-        'steps': steps,
-        'date': date.millisecondsSinceEpoch,
-        'note': note,
-      };
+    'id': id,
+    'type': type.name,
+    'duration_min': durationMin,
+    'calories': calories,
+    'steps': steps,
+    'date': date.millisecondsSinceEpoch,
+    'note': note,
+  };
 
   factory ActivityEntry.fromMap(Map<String, Object?> map) {
     return ActivityEntry(

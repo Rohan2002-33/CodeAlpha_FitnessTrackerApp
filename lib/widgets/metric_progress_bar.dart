@@ -31,8 +31,9 @@ class MetricProgressBar extends StatelessWidget {
     final track = onGradient
         ? Colors.white.withValues(alpha: 0.2)
         : scheme.surfaceContainerHighest;
-    final double progress =
-        goal <= 0 ? 0.0 : (value / goal).clamp(0.0, 1.0).toDouble();
+    final double progress = goal <= 0
+        ? 0.0
+        : (value / goal).clamp(0.0, 1.0).toDouble();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
