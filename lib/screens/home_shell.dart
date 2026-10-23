@@ -1,5 +1,6 @@
 import 'history_screen.dart';
 import 'insights_screen.dart';
+import 'goals_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'add_edit_activity_screen.dart';
@@ -24,7 +25,7 @@ class _HomeShellState extends State<HomeShell> {
           DashboardScreen(onSeeAll: () => setState(() => _index = 1)),
           const HistoryScreen(),
           const InsightsScreen(),
-          const _ComingSoon('Goals'),
+          const GoalsScreen(),
         ],
       ),
       floatingActionButton: _index <= 1
