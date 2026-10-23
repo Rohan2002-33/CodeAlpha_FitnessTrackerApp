@@ -1,17 +1,42 @@
-# fittrack
+# FitTrack – Fitness Tracker App
 
-A new Flutter project.
+Flutter fitness tracker built for the **CodeAlpha App Development Internship (Task 3)**.
 
-## Getting Started
+## Features
+- Log workouts manually: exercise type, duration, calories, steps, date, notes
+- Dashboard with daily progress ring and progress bars
+- Weekly bar and line charts (steps, calories, active minutes)
+- Insights: week navigation, best day, goal streaks, activity mix
+- History with filters, swipe-to-delete and undo
+- Custom daily goals, light and dark theme
+- Offline local storage with SQLite
 
-This project is a starting point for a Flutter application.
+## Tech stack
+Flutter · Dart · Provider · sqflite · shared_preferences · fl_chart · intl
 
-A few resources to get you started if this is your first Flutter project:
+## Project structure
+```
+lib/
+  core/        theme, constants
+  models/      ActivityEntry, Goals, DaySummary
+  services/    SQLite + goal storage
+  providers/   ActivityProvider (state)
+  screens/     splash, dashboard, history, insights, goals, add/edit
+  widgets/     reusable UI components and charts
+  utils/       date and format helpers
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Run
+```
+flutter pub get
+flutter run
+```
+Run on Android/iOS emulator or device (SQLite is not supported on web).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Build APK
+```
+flutter build apk --release
+```
+
+## Author
+Mahir Ahamed Rohan
