@@ -184,7 +184,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
           const SizedBox(height: 28),
           Center(
             child: Text(
-              'FitTrack v1.0.0 · CodeAlpha App Development Internship',
+              'FitTrack v1.0.0 · App for tracking fitness activities',
               style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
             ),
           ),
